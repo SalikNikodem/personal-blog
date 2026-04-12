@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+<title>ADMIN PANEL</title>
+{% endblock %}
+
+{% block body %}
+<header class="header-bar">
+  <h1>Personal Blog</h1>
+  <a href="/admin/add" class="add-button">+ Add</a>
+</header>
+  {% for article in articles %}
+  <div class="article-item">
+    <span class="article-title">{{ article.title }}</span>
+<!--    <span class="article-date">{{ article.date.strftime('%B %d, %Y') }}</span>-->
+    <div class="article-options">
+      <a href="admin/edit/{{task.id}}">Edit</a>
+      <a href="admin/delete/{{task.id}}">Delete</a>
+    </div>
+  </div>
+  {% endfor %}
+
+{% endblock %}

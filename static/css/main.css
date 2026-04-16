@@ -1,12 +1,142 @@
 body{
+    font-family: 'Comic Sans MS', cursive, sans-serif;
     display: flex;
-    margin: 0;
-    padding: 0;
+    justify-content: center;
+    padding-top: 50px;
+    background-color: white;
+}
+.content{
+    background: #f9fafb;
+    border: 3px solid #333;
+    border-radius: 15px;
+    padding: 30px;
+    width: 450px;
+    box-shadow: 8px 8px 0px #333;
+}
+.header-bar h1{
+    margin: 0 0 30px 0;
+    font-size: 32px;
 }
 
-.header-bar{
+.home_article{
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+.article_link{
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+.article_link:hover{
+    color: #555;
+}
+.article_date{
+    color:#9fa8b2
+}
+.article_title {
+    margin: 0 0 15px 0;
+    font-size: 32px;
+}
+.post_date {
+    color:#9fa8b2;
+    font-size: 16px;
+
+}
+.post-content{
+    margin-top: 15px;
+    font-size: 18px;
+    overflow-wrap: break-word;
+}
+.back_link{
+    padding-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+.back_link a{
+    text-decoration: none;
+    font-size: 20px;
+    color:#9fa8b2;
+}
+.back_link a:hover{
+    color: black;
+}
+.header-bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.header-bar h1{
+    margin: 0;
+}
+.add-button{
+    text-decoration: none;
+    color:#9fa8b2;
+    font-size: 22px;
+}
+.add-button:hover{
+    color: black;
+}
+.admin_articles{
+    font-size: 18px;
+}
+.article-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+.article-options a{
+    padding: 0 0 0 15px;
+}
+.article-options a{
+    text-decoration: none;
+    color:#9fa8b2;
+}
+.article-options a:hover{
+    color: black;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+form label {
+    font-weight: bold;
+    margin-bottom: -10px;
+    font-size: 18px;
+}
+form input[type="text"],
+form input[type="date"],
+form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #333;
+    border-radius: 8px;
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+form textarea {
+    height: 250px;
+    resize: vertical;
+}
+form button {
+    align-self: flex-start;
+    padding: 10px 30px;
+    background-color: white;
+    border: 2px solid #333;
+    border-radius: 8px;
+    font-family: 'Comic Sans MS', cursive;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.2s;
+}
+form button:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
 }

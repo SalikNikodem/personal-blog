@@ -6,20 +6,21 @@
 {% endblock %}
 
 {% block body %}
-<header class="header-bar">
-  <h1>Personal Blog</h1>
-  <a href="/admin/add" class="add-button">+ Add</a>
-</header>
-  <div class="admin_articles">
-    {% for article in articles %}
-    <div class="article-item">
-      <span class="article-title">{{ article.title }}</span>
-      <div class="article-options">
-        <a href="admin/edit/{{article.id}}">Edit</a>
-        <a href="admin/delete/{{article.id}}">Delete</a>
+<div class="content">
+  <header class="header-bar">
+    <h1>Personal Blog</h1>
+    <a href="/admin/add" class="add-button">+ Add</a>
+  </header>
+    <div class="admin_articles">
+      {% for article in articles %}
+      <div class="article-item">
+        <span class="article-title">{{ article.title }}</span>
+        <div class="article-options">
+          <a href="admin/edit/{{article.id}}">Edit</a>
+          <a href="admin/delete/{{article.id}}">Delete</a>
+        </div>
       </div>
+      {% endfor %}
     </div>
-    {% endfor %}
-  </div>
-
+</div>
 {% endblock %}

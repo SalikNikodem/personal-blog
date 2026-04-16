@@ -5,17 +5,19 @@
 {% endblock %}
 
 {% block body %}
-<header class="header-bar">
-  <h1>Personal Blog</h1>
-</header>
-<div class="home_articles">
-    {% for article in articles %}
-    <div class="home_article">
-        <a href="/article/{{ article.id }}" class="article_link">{{ article.title }}</a>
-        <span class="article_date">
-            {{ article.date.strftime('%B %d %Y') }}
-        </span>
+<div class="content">
+    <header class="header-bar">
+      <h1>Personal Blog</h1>
+    </header>
+    <div class="home_articles">
+        {% for article in articles %}
+        <div class="home_article">
+            <a href="/article/{{ article.id }}" class="article_link">{{ article.title }}</a>
+            <span class="article_date">
+                {{ article.date.strftime('%B %d %Y') }}
+            </span>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 {% endblock %}

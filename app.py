@@ -1,10 +1,30 @@
-from flask import Flask, render_template, request, redirect
+from functools import wraps
+from flask import Flask, render_template, request, redirect, Response
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+
+
+def check_auth(username, password):
+    return username == 'admin' and password == 'admin123'
+
+def authenticate():
+    return Response(
+        'Could not verify your access level.\n'
+        'You have to login', 401,
+        {'WWW-Authenticate': 'Basic realm="Login Required"'})
+
+def requires_auth(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        auth = request.authorization
+        if not auth or not check_auth(auth.username, auth.password):
+            return authenticate()
+        return f(*args, **kwargs)
+    return decorated
 
 class Article(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -25,11 +45,13 @@ def article(id):
     return render_template('post.html', article=article)
 
 @app.route('/admin')
+@requires_auth
 def admin():
     articles = Article.query.order_by(Article.id).all()
     return render_template('admin.html', articles=articles)
 
 @app.route('/admin/add', methods=['POST', 'GET'])
+@requires_auth
 def add():
     if request.method == 'POST':
         article_title = request.form['title']
@@ -52,6 +74,7 @@ def add():
 
 
 @app.route('/admin/edit/<int:id>', methods=['POST', 'GET'])
+@requires_auth
 def edit(id):
     article_to_edit = Article.query.get_or_404(id)
 
@@ -69,6 +92,7 @@ def edit(id):
 
     return render_template('new_article.html', mode='edit', article=article_to_edit)
 @app.route('/admin/delete/<int:id>')
+@requires_auth
 def delete(id):
     article_to_delete = Article.query.get_or_404(id)
 
